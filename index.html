@@ -37,11 +37,12 @@
       //Inicio
       var body = document.getElementsByTagName('body')[0];
       body.className = 'bg-ligth'
-      var div = document.createElement('div')
-      div.className = 'container';
-      body.appendChild(div);
-      div.appendChild(header_boostrap());
-      div.appendChild(footer());
+      var divContainer = document.createElement('div')
+      divContainer.className = 'container';
+      body.appendChild(divContainer);
+      divContainer.appendChild(header_boostrap());
+      divContainer.appendChild(row_bootstrap());
+      divContainer.appendChild(footer());
       //Primer div que esta dentro de container
       function header_boostrap(){
         var div = document.createElement('div');
@@ -64,6 +65,85 @@
 
       return div;
       }
+      //Segundo div dentro del container
+      function row_bootstrap() {
+        var divRow = document.createElement('div');
+        divRow.className = 'row';
+        var div = document.createElement('div');
+        div.className = 'col-md-4 order-md-2 mb-4';
+        div.appendChild(title_columns());
+        div.appendChild(shopping_cart());
+        divRow.appendChild(div);
+
+      return divRow;
+      }
+
+
+      //contenido del segundo div (1/3)
+      function title_columns(){
+        var h4 = document.createElement('h4');
+        h4.className = 'd-flex justify-content-between align-items-center mb-3';
+        var spanOne = document.createElement('span');
+        spanOne.className = 'text-muted';
+        spanOne.appendChild(document.createTextNode('Your cart'));
+        var spanTwo = document.createElement('span');
+        spanTwo.className = 'badge badge-secondary badge-pill';
+        spanTwo.appendChild(document.createTextNode('3'));
+        h4.appendChild(spanOne);
+        h4.appendChild(spanTwo);
+
+      return h4;
+      }
+      function shopping_cart(){
+        var ul = document.createElement('ul');
+        ul.className = 'list-group mb-3';
+        ul.appendChild(item_cart('Product name', 'Brief description', '$12'));
+        ul.appendChild(item_cart('Second Product', 'Brief description', '$8'));
+        ul.appendChild(item_cart('Third item', 'Brief description', '$5'));
+        ul.appendChild(item_cart('Promo code', 'EXAMPLECODE', '-$5', true));
+
+        var total = document.createElement('li');
+        total.className = 'list-group-item d-flex justify-content-between';
+        var total_span = document.createElement('span');
+        total_span.appendChild(document.createTextNode('Total (USD)'));
+        var total_price = document.createElement('strong');
+        total_price.appendChild(document.createTextNode('$20'));
+        total.appendChild(total_span);
+        total.appendChild(total_price);
+        ul.appendChild(total);
+
+        return ul;
+      }
+      function item_cart(nameProduct, description, price, promo=false) {
+        var li = document.createElement('li');
+        var div = document.createElement('div');
+        if (promo) {
+          div.className = 'text-success';
+          li.className = 'list-group-item d-flex justify-content-between bg-light';
+        }
+        else {
+          li.className = 'list-group-item d-flex justify-content-between lh-condensed';
+        }
+        var h6 = document.createElement('h6');
+        h6.className = 'my-0';
+        var small = document.createElement('small');
+        small.className = 'text-muted';
+        var span = document.createElement('span');
+        span.className = 'text-muted';
+
+        h6.appendChild(document.createTextNode(nameProduct));
+        small.appendChild(document.createTextNode(description));
+        div.appendChild(h6);
+        div.appendChild(small);
+        li.appendChild(div);
+        span.appendChild(document.createTextNode(price));
+        li.appendChild(span);
+
+        return li;
+      }
+
+
+
       //Footer
       function footer(){
         var footer = document.createElement('footer');
