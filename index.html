@@ -73,6 +73,7 @@
         div.className = 'col-md-4 order-md-2 mb-4';
         div.appendChild(title_columns());
         div.appendChild(shopping_cart());
+        div.appendChild(promo_code())
         divRow.appendChild(div);
 
       return divRow;
@@ -94,6 +95,7 @@
 
       return h4;
       }
+      //contenido del segundo div (2/3)
       function shopping_cart(){
         var ul = document.createElement('ul');
         ul.className = 'list-group mb-3';
@@ -141,8 +143,29 @@
 
         return li;
       }
+      //contenido del segundo div (3/3)
+      function promo_code() {
+        var form = document.createElement('form');
+        form.className = 'card p-2';
+        var div = document.createElement('div');
+        div.className = 'input-group';
+        form.appendChild(div);
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'form-control';
+        input.placeholder = 'Promo code';
+        div.appendChild(input);
+        var div_button = document.createElement('div');
+        div_button.className = 'input-group-append';
+        var button = document.createElement('button');
+        button.type = 'submit';
+        button.className = 'btn btn-secondary';
+        button.appendChild(document.createTextNode('Redeem'));
+        div_button.appendChild(button);
+        div.appendChild(div_button);
 
-
+        return form;            
+      }
 
       //Footer
       function footer(){
