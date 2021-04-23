@@ -37,10 +37,33 @@
       //Inicio
       var body = document.getElementsByTagName('body')[0];
       body.className = 'bg-ligth'
-      var container = document.createElement('div')
-      container.className = 'container';
-      body.appendChild(container);
-      container.appendChild(footer())
+      var div = document.createElement('div')
+      div.className = 'container';
+      body.appendChild(div);
+      div.appendChild(header_boostrap());
+      div.appendChild(footer());
+      //Primer div que esta dentro de container
+      function header_boostrap(){
+        var div = document.createElement('div');
+        div.className = 'py-5 text-center';
+        var img = document.createElement('img');
+        img.className = 'd-block mx-auto mb-4';
+        img.src = 'bootstrap-solid.svg';
+        img.width = 72;
+        img.height = 72;
+        div.appendChild(img);
+        
+        var h2 = document.createElement('h2');
+        h2.appendChild(document.createTextNode('Checkout form'));
+        div.appendChild(h2);
+
+        var p = document.createElement('p');
+        p.className = 'lead';
+        p.appendChild(document.createTextNode('Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.'));
+        div.appendChild(p);
+
+      return div;
+      }
       //Footer
       function footer(){
         var footer = document.createElement('footer');
