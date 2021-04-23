@@ -76,11 +76,18 @@
         div.appendChild(promo_code())
         divRow.appendChild(div);
 
+        var divContact = document.createElement('div');
+        divContact.className ='col-md-8 order-md-1';
+        var h4 = document.createElement('h4');
+        h4.className = 'mb-3'
+        h4.appendChild(document.createTextNode('Billing Address'));
+        divContact.appendChild(h4);
+        divContact.appendChild(billing_address());
+        divRow.appendChild(divContact);
+
       return divRow;
       }
-
-
-      //contenido del segundo div (1/3)
+      //Contenido del div que tiene el carro de compras (1/3)
       function title_columns(){
         var h4 = document.createElement('h4');
         h4.className = 'd-flex justify-content-between align-items-center mb-3';
@@ -95,7 +102,7 @@
 
       return h4;
       }
-      //contenido del segundo div (2/3)
+      //Contenido del div que tiene el carro de compras (2/3)
       function shopping_cart(){
         var ul = document.createElement('ul');
         ul.className = 'list-group mb-3';
@@ -143,7 +150,7 @@
 
         return li;
       }
-      //contenido del segundo div (3/3)
+      //Contenido del div que tiene el carro de compras (3/3)
       function promo_code() {
         var form = document.createElement('form');
         form.className = 'card p-2';
@@ -166,6 +173,40 @@
 
         return form;            
       }
+      //Contenido del div que tiene el form de contacto
+      function billing_address() {
+        var form = document.createElement('form');
+        form.className = 'needs-validation';
+        var divRow = document.createElement('div');
+        divRow.className = 'row';
+        divRow.appendChild(input_item('First name'));
+        divRow.appendChild(input_item('Last name'));
+        form.appendChild(divRow);
+        return form;
+      }
+
+      // Crear label e inputs para form
+      function input_item(item) {
+        var div = document.createElement('div');
+        div.className = 'col-md-6 mb-3';
+        var label = document.createElement('label');
+        label.for = item;
+        div.appendChild(label)
+
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'form-control';
+        div.appendChild(input);
+
+        var divInvalid = document.createElement('div');
+        divInvalid.className = 'invalid-feedback'
+        divInvalid.appendChild(document.createTextNode('Valid' + item + 'is required'))
+        div.appendChild(divInvalid);
+
+        return div;
+      }
+
+
 
       //Footer
       function footer(){
