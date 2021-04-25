@@ -182,20 +182,28 @@
         divRow.appendChild(input_item('First name'));
         divRow.appendChild(input_item('Last name'));
         form.appendChild(divRow);
+        form.appendChild(input_item_two('Username'));
+        form.appendChild(input_item_three('Email'));
+        form.appendChild(input_item_three('Address'));
+        form.appendChild(input_item_three('Address 2'));
+        form.appendChild(button());
         return form;
       }
 
-      // Crear label e inputs para form
+      // Crear label e inputs para form name y lastname 
       function input_item(item) {
         var div = document.createElement('div');
         div.className = 'col-md-6 mb-3';
         var label = document.createElement('label');
-        label.for = item;
+        label.htmlFor = item;
+        label.appendChild(document.createTextNode(item));
         div.appendChild(label)
 
         var input = document.createElement('input');
         input.type = 'text';
         input.className = 'form-control';
+        input.id = (item).toLowerCase().replace(/ /g, "");
+        input.required = true;
         div.appendChild(input);
 
         var divInvalid = document.createElement('div');
@@ -205,8 +213,81 @@
 
         return div;
       }
+      // Crear label e inputs para form user
+      function input_item_two(item) {
+        var div = document.createElement('div');
+        div.className = 'mb-3';
+        var label = document.createElement('label');
+        label.htmlFor = item;
+        label.appendChild(document.createTextNode(item));
+        div.appendChild(label)
+        
+        var divGroup = document.createElement('div');
+        divGroup.className = 'input-group';
+        
+        var divPrepend = document.createElement('div');
+        divPrepend.className = 'input-group-prepend';
+        
+        var span = document.createElement('span');
+        span.className = 'input-group-text';
+        span.appendChild(document.createTextNode('@'));
+        divPrepend.appendChild(span);
+        divGroup.appendChild(divPrepend);
 
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'form-control';
+        input.placeholder = item.toLowerCase();
+        input.id = (item).toLowerCase().replace(/ /g, "");
+        input.required = true;
+        divGroup.appendChild(input);
 
+        var divInvalid = document.createElement('div');
+        divInvalid.className = 'invalid-feedback';
+        divInvalid.style = 'width: 100%;';
+        divInvalid.appendChild(document.createTextNode('Your user name is required'));
+        divGroup.appendChild(divInvalid);
+
+  
+        div.appendChild(divGroup);
+
+        return div;
+      }
+
+      // Crear label e inputs para form email address, address 2
+      function input_item_three(item) {
+        var div = document.createElement('div');
+        div.className = 'mb-3';
+        var label = document.createElement('label');
+        label.htmlFor = item.toLowerCase();
+        label.appendChild(document.createTextNode(item));
+        div.appendChild(label);
+
+        var input = document.createElement('input');
+        input.type = item;
+        input.className = 'form-control';
+        input.placeholder = item;
+        input.id = (item).toLowerCase().replace(/ /g, "");
+        input.required = false;
+        div.appendChild(input);
+
+        var divInvalid = document.createElement('div');
+        divInvalid.className = 'invalid-feedback'
+        divInvalid.appendChild(document.createTextNode('Please enter a valid' + item));
+        div.appendChild(divInvalid);
+
+        return div;
+      }
+
+      // Crear boton para form
+      function button() {
+      var button = document.createElement('button');
+      button.className = 'btn btn-primary btn-lg btn-block';
+      button.type = 'submit'
+      button.appendChild(document.createTextNode('Continue to checkout'));
+      
+      return button;
+      }
 
       //Footer
       function footer(){
